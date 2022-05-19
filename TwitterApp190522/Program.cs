@@ -21,13 +21,38 @@ namespace TwitterApp190522
             stream.AddTrack("Python");
             stream.AddTrack("javascript");
 
+            int counter1 = 0;
+            int counter2 = 0;
+            int counter3 = 0;
+            int counter4 = 0;
 
-            stream.MatchingTweetReceived += (sender, eventReceived) =>
+            int howmanytweetssofar = 0;
+
+            stream.MatchingTweetReceived += async (sender, eventReceived) =>
+
+            {
+
+
+
+                ITweet tweet = eventReceived.Tweet;
+                string tweetText = eventReceived.Tweet.FullText;
+                int favoritecount = tweet.FavoriteCount;
+                string tweetAuthorName = tweet.CreatedBy.Name;
+
+
+                Console.WriteLine(tweetAuthorName, " " + " " + favoritecount);
+                Console.WriteLine(tweetText);
+                Console.WriteLine();
+                Console.WriteLine();
+
+
+                stream.MatchingTweetReceived += (sender, eventReceived) =>
             {
                 Console.WriteLine(eventReceived.Tweet);
             };
 
-            await stream.StartMatchingAnyConditionAsync();
+                await stream.StartMatchingAnyConditionAsync();
+            };
         }
     }
 }
