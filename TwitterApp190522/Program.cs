@@ -79,13 +79,17 @@ namespace TwitterApp190522
                     );
                 Console.WriteLine("----------------");
 
-                stream.MatchingTweetReceived += (sender, eventReceived) =>
-            {
-                Console.WriteLine(eventReceived.Tweet);
+                if (howmanytweetssofar == 100)
+                {
+                    stream.Stop();
+                    Console.WriteLine("Complete!");
+                }
+
+                howmanytweetssofar++;
             };
 
-                await stream.StartMatchingAnyConditionAsync();
-            };
+            await stream.StartMatchingAnyConditionAsync();
+            }
         }
     }
-}
+
