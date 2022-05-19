@@ -11,6 +11,10 @@ namespace TwitterApp190522
         {
             Console.WriteLine("Hello World!");
 
+            string filter1 = "C#";
+            string filter2 = "Python";
+            string filter3 = "javascript";
+            string filter4 = "pascal";
 
             var userCredentials = new TwitterCredentials("CONSUMER_KEY", "CONSUMER_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
             var userClient = new TwitterClient(userCredentials);
@@ -20,6 +24,7 @@ namespace TwitterApp190522
             stream.AddTrack("C#");
             stream.AddTrack("Python");
             stream.AddTrack("javascript");
+            stream.AddTrack("pascal");
 
             int counter1 = 0;
             int counter2 = 0;
@@ -45,6 +50,34 @@ namespace TwitterApp190522
                 Console.WriteLine();
                 Console.WriteLine();
 
+                if (tweetText.Contains(filter1))
+
+                {
+                    counter1++;
+                }
+                if (tweetText.Contains(filter2))
+                {
+
+                    counter2++;
+                }
+                if (tweetText.Contains(filter3))
+                {
+                    counter3++;
+                }
+                if (tweetText.Contains(filter4))
+                {
+                    counter4++;
+                }
+                Console.WriteLine(
+                    filter1 + ":" + counter1 + ", " +
+                    filter2 + ":" + counter2 + ", " +
+                    filter3 + ":" + counter3 + ", " +
+                    filter4 + ":" + counter4
+
+
+
+                    );
+                Console.WriteLine("----------------");
 
                 stream.MatchingTweetReceived += (sender, eventReceived) =>
             {
